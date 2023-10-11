@@ -1,0 +1,10 @@
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\bin\Debug\curbadebezier.exe.config
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\bin\Debug\curbadebezier.exe
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\bin\Debug\curbadebezier.pdb
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.csproj.AssemblyReference.cache
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.Form1.resources
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.Properties.Resources.resources
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.csproj.GenerateResource.cache
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.csproj.CoreCompileInputs.cache
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.exe
+C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.pdb
