@@ -8,3 +8,13 @@ C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SE
 C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.csproj.CoreCompileInputs.cache
 C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.exe
 C:\Users\galle\OneDrive - Universidad Autonoma de San Luis Potosi - UASLP\ISI\SEMESTRE 5\INTERFACES GRAFICAS\parcial 2\curbadebezier\obj\Debug\curbadebezier.pdb
+C:\Users\santi\Source\Repos\CURVA_BEZIER\bin\Debug\curbadebezier.exe.config
+C:\Users\santi\Source\Repos\CURVA_BEZIER\bin\Debug\curbadebezier.exe
+C:\Users\santi\Source\Repos\CURVA_BEZIER\bin\Debug\curbadebezier.pdb
+C:\Users\santi\Source\Repos\CURVA_BEZIER\obj\Debug\curbadebezier.csproj.AssemblyReference.cache
+C:\Users\santi\Source\Repos\CURVA_BEZIER\obj\Debug\curbadebezier.Form1.resources
+C:\Users\santi\Source\Repos\CURVA_BEZIER\obj\Debug\curbadebezier.Properties.Resources.resources
+C:\Users\santi\Source\Repos\CURVA_BEZIER\obj\Debug\curbadebezier.csproj.GenerateResource.cache
+C:\Users\santi\Source\Repos\CURVA_BEZIER\obj\Debug\curbadebezier.csproj.CoreCompileInputs.cache
+C:\Users\santi\Source\Repos\CURVA_BEZIER\obj\Debug\curbadebezier.exe
+C:\Users\santi\Source\Repos\CURVA_BEZIER\obj\Debug\curbadebezier.pdb
