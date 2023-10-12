@@ -12,140 +12,35 @@ namespace curbadebezier
 {
     public partial class Form1 : Form
     {
-        private List<PointF> puntos = new List<PointF>(); // Lista que almacena los puntos de control de la curva de Bezier
-        private Point puntoArrastrado = Point.Empty; // Punto que se está arrastrando
+        private List<Point> puntos = new List<Point>(); // Lista que almacena los puntos de control de la curva de Bezier
+        private int puntoArrastrado;  // Punto que se está arrastrando
         private int radioPunto = 5; // Radio de los puntos de control
-        private int puntoSeleccionado = -1; // Variable para llevar un registro del punto seleccionado
-
-
+        private int centroX, centroY;
+            
         public Form1()
         {
             InitializeComponent();
-            puntos.Add(new PointF(50, 150));
-            puntos.Add(new PointF(150, 50));
-            puntos.Add(new PointF(250, 150));
-            puntos.Add(new PointF(350, 250));
+            puntoArrastrado = -1;
+            centroX = panel1.Width / 2;
+            centroY = panel1.Height / 2;
+            puntos.Add(new Point(50, 150));
+            puntos.Add(new Point(150, 50));
+            puntos.Add(new Point(250, 150));
+            puntos.Add(new Point(350, 250));
 
-            // Crear etiquetas para representar los puntos de control
-            for (int i = 0; i < puntos.Count; i++)
+            for (int i = 0; i < 4; i++)
             {
-                var label = new Label
-                {
-                    Location = new Point((int)puntos[i].X - radioPunto, (int)puntos[i].Y - radioPunto),
-                    Size = new Size(2 * radioPunto, 2 * radioPunto),
-                    BackColor = Color.Red,
-                    Cursor = Cursors.Hand,
-                    Tag = i, // Utiliza el atributo 'Tag' para identificar el punto de control
-                };
-                label.MouseDown += Punto_MouseDown; // Asigna el evento MouseDown para permitir arrastrar el punto
-                label.MouseMove += Punto_MouseMove; // Asigna el evento MouseMove para actualizar la posición del punto
-                label.MouseUp += Punto_MouseUp; // Asigna el evento MouseUp para finalizar el arrastre
-                Controls.Add(label);
+                ActualizarTextBoxConPunto(i);
             }
         }
 
-        private void Punto_MouseDown(object sender, MouseEventArgs e)
-        {
-            // Registra el punto seleccionado para el arrastre
-            puntoSeleccionado = (int)((Label)sender).Tag;
-        }
-
-        private void Punto_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (puntoSeleccionado != -1)
-            {
-                int puntoIndex = puntoSeleccionado;
-                int x = e.X + ((Label)sender).Left + radioPunto;
-                int y = e.Y + ((Label)sender).Top + radioPunto;
-
-                // Actualiza la posición del punto de control
-                puntos[puntoIndex] = new PointF(x, y);
-
-                ((Label)sender).Left = x - radioPunto;
-                ((Label)sender).Top = y - radioPunto;
-
-                // Actualiza los valores de los TextBox con las nuevas coordenadas
-                ActualizarTextBoxConPunto(puntoIndex);
-
-                // Vuelve a dibujar la gráfica
-                grafica.Refresh();
-            }
-        }
-
-        private void Punto_MouseUp(object sender, MouseEventArgs e)
-        {
-            puntoSeleccionado = -1; // Restablece el punto seleccionado;
-        }
-
-        private void ActualizarTextBoxConPunto(int puntoIndex) {
+        private void ActualizarTextBoxConPunto(int index) {
             // Actualiza los valores de los TextBox con las coordenadas del punto de control
-            TextBox textBoxX = (TextBox)Controls.Find("P" + (puntoIndex + 1) + "X", true)[0];
-            TextBox textBoxY = (TextBox)Controls.Find("P" + (puntoIndex + 1) + "Y", true)[0];
+            TextBox textBoxX = (TextBox)Controls.Find("P" + (index + 1) + "X", true)[0];
+            TextBox textBoxY = (TextBox)Controls.Find("P" + (index + 1) + "Y", true)[0];
 
-            textBoxX.Text = puntos[puntoIndex].X.ToString();
-            textBoxY.Text = puntos[puntoIndex].Y.ToString();
-        }
-
-        //COORDADA DEL PUNTO 1 EJE X
-        private void P1X_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(0, P1X, P1Y);
-        }
-
-        //COORDADA DEL PUNTO 1 EJE Y
-        private void P1Y_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(0, P1X, P1Y);
-        }
-
-        //COORDADA DEL PUNTO 2 EJE X
-        private void P2X_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(1, P2X, P2Y);
-        }
-
-        //COORDADA DEL PUNTO 2 EJE Y
-        private void P2Y_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(1, P2X, P2Y);
-        }
-
-        //COORDADA DEL PUNTO 3 EJE X
-        private void P3X_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(2, P3X, P3Y);
-        }
-
-        //COORDADA DEL PUNTO 3 EJE Y
-        private void P3Y_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(2, P3X, P3Y);
-        }
-
-        //COORDADA DEL PUNTO 4 EJE X
-        private void P4X_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(3, P4X, P4Y);
-        }
-
-        //COORDADA DEL PUNTO 4 EJE Y
-        private void P4Y_TextChanged(object sender, EventArgs e)
-        {
-            ActualizarPuntoDesdeTextBox(3, P4X, P4Y);
-        }
-
-
-        private void ActualizarPuntoDesdeTextBox(int puntoIndex, TextBox textBoxX, TextBox textBoxY)
-        {
-            float x, y;
-            if (float.TryParse(textBoxX.Text, out x) && float.TryParse(textBoxY.Text, out y))
-            {
-                puntos[puntoIndex] = new PointF(x, y);
-                ActualizarPosicionPuntoControl(puntoIndex);
-
-                // Vuelve a dibujar la gráfica
-                grafica.Refresh();
-            }
+            textBoxX.Text = puntos[index].X.ToString();
+            textBoxY.Text = puntos[index].Y.ToString();
         }
 
         //BOTON QUE ACTUALIZA LA GRAFICA CON LOS COORDENADAS LLENADAS EN LOS TEXTS BOXS
@@ -154,11 +49,11 @@ namespace curbadebezier
             // Actualiza los puntos de control con los valores de los TextBox
             for (int i = 0; i < puntos.Count; i++)
             {
-                float x, y;
-                if (float.TryParse(((TextBox)Controls.Find("P" + (i + 1) + "X", true)[0]).Text, out x) &&
-                    float.TryParse(((TextBox)Controls.Find("P" + (i + 1) + "Y", true)[0]).Text, out y))
+                int x, y;
+                if (int.TryParse(((TextBox)Controls.Find("P" + (i + 1) + "X", true)[0]).Text, out x) &&
+                    int.TryParse(((TextBox)Controls.Find("P" + (i + 1) + "Y", true)[0]).Text, out y))
                 {
-                    puntos[i] = new PointF(x, y);
+                    puntos[i] = new Point(x, y);
                     ActualizarPosicionPuntoControl(i);
                 }
                 else
@@ -194,7 +89,7 @@ namespace curbadebezier
             }
 
             // Dibuja los puntos de control
-            foreach (var punto in puntos)
+            foreach (Point punto in puntos)
             {
                 graphics.FillEllipse(Brushes.Red, punto.X - radioPunto, punto.Y - radioPunto, 2 * radioPunto, 2 * radioPunto);
             }
@@ -227,6 +122,45 @@ namespace curbadebezier
 
             // Devuelve la lista de puntos que forman la curva de Bezier
             return curvePoints;
+        }
+
+        private void grafica_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            puntoArrastrado = getPointClick(e.Location);
+        }
+
+        private void grafica_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (puntoArrastrado != -1)
+            {
+                ActualizarTextBoxConPunto(puntoArrastrado);
+                puntos[puntoArrastrado] = e.Location;
+                grafica.Refresh();
+            }
+
+        }
+
+        private void grafica_MouseUp(object sender, MouseEventArgs e)
+        {
+            puntoArrastrado = -1;
+
+        }
+
+        int getPointClick(Point mouse)
+        {
+            int i = 0;
+            foreach (Point p in puntos)
+            {
+                int dx = mouse.X - p.X;
+                int dy = mouse.Y - p.Y;
+                if (dx * dx + dy * dy <= radioPunto * radioPunto)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
         }
     }
 }
