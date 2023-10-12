@@ -82,7 +82,7 @@
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(957, 575);
+            this.panel1.Size = new System.Drawing.Size(957, 711);
             this.panel1.TabIndex = 0;
             // 
             // label9
@@ -270,10 +270,10 @@
             // 
             // grafica
             // 
-            this.grafica.Location = new System.Drawing.Point(3, 3);
+            this.grafica.Location = new System.Drawing.Point(2, 9);
             this.grafica.Margin = new System.Windows.Forms.Padding(2);
             this.grafica.Name = "grafica";
-            this.grafica.Size = new System.Drawing.Size(833, 568);
+            this.grafica.Size = new System.Drawing.Size(823, 700);
             this.grafica.TabIndex = 0;
             this.grafica.Paint += new System.Windows.Forms.PaintEventHandler(this.grafica_Paint);
             this.grafica.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grafica_MouseDown);
@@ -284,7 +284,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 571);
+            this.ClientSize = new System.Drawing.Size(1158, 751);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";

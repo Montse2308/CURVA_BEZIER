@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,17 @@ namespace curbadebezier
         private int puntoArrastrado;  // Punto que se está arrastrando
         private int radioPunto = 5; // Radio de los puntos de control
         private int centroX, centroY;
-            
+
         public Form1()
         {
             InitializeComponent();
             puntoArrastrado = -1;
-            centroX = panel1.Width / 2;
-            centroY = panel1.Height / 2;
-            puntos.Add(new Point(50, 150));
-            puntos.Add(new Point(150, 50));
-            puntos.Add(new Point(250, 150));
-            puntos.Add(new Point(350, 250));
+            centroX = grafica.Width / 2;
+            centroY = grafica.Height / 2;
+            puntos.Add(ajustarPunto(50, 150));
+            puntos.Add(ajustarPunto(150, 50));
+            puntos.Add(ajustarPunto(250, 150));
+            puntos.Add(ajustarPunto(350, 250));
 
             for (int i = 0; i < 4; i++)
             {
@@ -39,8 +40,9 @@ namespace curbadebezier
             TextBox textBoxX = (TextBox)Controls.Find("P" + (index + 1) + "X", true)[0];
             TextBox textBoxY = (TextBox)Controls.Find("P" + (index + 1) + "Y", true)[0];
 
-            textBoxX.Text = puntos[index].X.ToString();
-            textBoxY.Text = puntos[index].Y.ToString();
+
+            textBoxX.Text = (puntos[index].X - centroX).ToString();
+            textBoxY.Text = (centroY - puntos[index].Y ).ToString();
         }
 
         //BOTON QUE ACTUALIZA LA GRAFICA CON LOS COORDENADAS LLENADAS EN LOS TEXTS BOXS
@@ -53,8 +55,7 @@ namespace curbadebezier
                 if (int.TryParse(((TextBox)Controls.Find("P" + (i + 1) + "X", true)[0]).Text, out x) &&
                     int.TryParse(((TextBox)Controls.Find("P" + (i + 1) + "Y", true)[0]).Text, out y))
                 {
-                    puntos[i] = new Point(x, y);
-                    ActualizarPosicionPuntoControl(i);
+                    puntos[i] = ajustarPunto(x, y);
                 }
                 else
                 {
@@ -67,15 +68,11 @@ namespace curbadebezier
             grafica.Refresh();
         }
 
-        private void ActualizarPosicionPuntoControl(int puntoIndex)
-        {
-            // Actualizar la posición de la etiqueta que representa el punto de control
-            Controls[puntoIndex].Location = new Point((int)puntos[puntoIndex].X - radioPunto, (int)puntos[puntoIndex].Y - radioPunto);
-        }
 
         //EN ESTE OBJETO VA LA GRAFICA
         private void grafica_Paint(object sender, PaintEventArgs e)
         {
+            dibujarEjes();
             if (puntos.Count < 4) return;
 
             var bezierPoints = CalcularCurvaDeBezier(puntos[0], puntos[1], puntos[2], puntos[3]);
@@ -93,6 +90,25 @@ namespace curbadebezier
             {
                 graphics.FillEllipse(Brushes.Red, punto.X - radioPunto, punto.Y - radioPunto, 2 * radioPunto, 2 * radioPunto);
             }
+        }
+
+        private void dibujarEjes()
+        {
+            // Obtenemos el objeto Graphics del Panel
+            Graphics g = grafica.CreateGraphics();
+            // Definimos un pincel y un tipo de línea para los ejes
+            Pen pen = new Pen(Color.Black);
+            pen.EndCap = LineCap.ArrowAnchor;
+
+            // Dibujamos el eje X
+            g.DrawLine(pen, 0, centroY, grafica.Width, centroY);
+
+            // Dibujamos el eje Y
+            g.DrawLine(pen, centroX, 0, centroX, grafica.Height);
+
+            // Liberamos los recursos
+            g.Dispose();
+            pen.Dispose();
         }
 
         private List<PointF> CalcularCurvaDeBezier(PointF p0, PointF p1, PointF p2, PointF p3)
@@ -161,6 +177,20 @@ namespace curbadebezier
                 i++;
             }
             return -1;
+        }
+
+        Point ajustarPunto(Point p)
+        {
+            p.X = centroX + p.X;
+            p.Y = centroY - p.Y;
+            return p;
+        }
+        Point ajustarPunto(int x, int y)
+        {
+            Point p = new Point(0,0);
+            p.X = centroX + x;
+            p.Y = centroY - y;
+            return p;
         }
     }
 }
